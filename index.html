@@ -201,6 +201,7 @@
             transform: scale(0);
         }
     </style>
+    <link rel="icon" type="image/png" href="assets/VK.png">
 </head>
 
 <body class="bg-slate-950 text-slate-200 antialiased selection:bg-indigo-500/30 selection:text-indigo-200">
@@ -228,18 +229,18 @@
             class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-indigo-600/20 rounded-full blur-[120px] pointer-events-none">
         </div>
 
-        <!-- 3D Interactive Elements (Hidden on Mobile) -->
+        <!-- 3D Interactive Elements -->
         <div id="hero-plane"
-            class="hidden md:flex absolute inset-0 pointer-events-none hero-3d-plane items-center justify-center">
+            class="flex absolute inset-0 pointer-events-none hero-3d-plane items-center justify-center">
 
             <!-- Right Floating UI Mockup -->
-            <div class="hero-card absolute bottom-[15%] right-[7%] w-64 shadow-2xl backdrop-blur-md"
+            <div class="hero-card absolute bottom-[15%] right-[2%] md:bottom-[15%] md:right-[7%] w-32 md:w-64 shadow-2xl backdrop-blur-md"
                 style="transform: translateZ(60px) rotateY(-15deg) rotateX(5deg);">
                 <img src="assets/UImockup.png" alt="UI Mockup" class="w-full h-auto rounded-lg opacity-90">
             </div>
 
             <!-- Left Floating UI Mockup -->
-            <div class="hero-card absolute bottom-[35%] left-[7%] w-64 shadow-2xl backdrop-blur-md"
+            <div class="hero-card absolute bottom-[65%] left-[2%] md:bottom-[35%] md:left-[7%] w-32 md:w-64 shadow-2xl backdrop-blur-md"
                 style="transform: translateZ(60px) rotateY(-15deg) rotateX(5deg);">
                 <img src="assets/LaptopUI.png" alt="UI Mockup" class="w-full h-auto rounded-lg opacity-90">
             </div>
