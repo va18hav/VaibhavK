@@ -1,0 +1,1134 @@
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Portfolio | Stop Losing Clients</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #020617;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #020617;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 3px;
+        }
+
+        /* Animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 3D Hero Animation */
+        .hero-perspective {
+            perspective: 1000px;
+        }
+
+        .hero-3d-plane {
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out;
+        }
+
+        .hero-card {
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Background Grid */
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+            -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+        }
+
+        /* Tilt Card */
+        .tilt-card {
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out;
+        }
+
+        .tilt-content {
+            transform: translateZ(20px);
+        }
+
+        /* Tech Stack Circle Animation */
+        @keyframes spin-slow {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .tech-ring {
+            animation: spin-slow 50s linear infinite;
+            transform-origin: center;
+        }
+
+        .tech-item {
+            transition: all 0.3s ease;
+        }
+
+        /* Counter-rotate icons so they stay upright while ring spins */
+        .tech-item-inner {
+            animation: spin-slow 50s linear infinite reverse;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .tech-ring:hover {
+            animation-play-state: paused;
+        }
+
+        .tech-ring:hover .tech-item-inner {
+            animation-play-state: paused;
+        }
+
+        /* Mobile Scroll Reveal */
+        .mobile-reveal-card {
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mobile-reveal-card .solution-side {
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+        }
+
+        .mobile-reveal-card .flaw-side {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Active State for Mobile Scroll */
+        .mobile-reveal-card.active .solution-side {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+
+        .mobile-reveal-card.active .flaw-side {
+            opacity: 0;
+            transform: translateY(-20px) scale(0.95);
+            pointer-events: none;
+        }
+
+        /* Process Timeline */
+        .process-node {
+            transition: all 0.5s ease;
+        }
+
+        .process-card {
+            transition: all 0.5s ease;
+            opacity: 0.4;
+            transform: translateX(20px);
+            filter: blur(1px);
+        }
+
+        .process-card.active {
+            opacity: 1;
+            transform: translateX(0);
+            filter: blur(0);
+        }
+
+        .process-dot {
+            transition: all 0.5s ease;
+            transform: scale(0.8);
+            background-color: #1e293b;
+            border-color: #334155;
+        }
+
+        .process-card.active .process-dot {
+            transform: scale(1.2);
+            background-color: #6366f1;
+            border-color: #818cf8;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+        }
+
+        /* WhatsApp Widget Animation */
+        @keyframes popup {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            80% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .widget-popup {
+            animation: popup 3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1s forwards;
+            opacity: 0;
+            transform: scale(0);
+        }
+    </style>
+</head>
+
+<body class="bg-slate-950 text-slate-200 antialiased selection:bg-indigo-500/30 selection:text-indigo-200">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-slate-950/80 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="#" class="text-lg font-semibold tracking-tight text-white flex items-center gap-2">
+                <div class="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></div>
+                VK.
+            </a>
+            <a href="#contact"
+                class="hidden md:inline-flex items-center justify-center px-5 py-2 text-xs font-medium tracking-wide text-white transition-colors duration-200 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:border-white/20">
+                Get your Website
+            </a>
+        </div>
+    </nav>
+
+    <!-- 1. HERO SECTION -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 hero-perspective"
+        id="hero-section">
+        <!-- Background Grid -->
+        <div class="absolute inset-0 bg-grid pointer-events-none"></div>
+        <div
+            class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-indigo-600/20 rounded-full blur-[120px] pointer-events-none">
+        </div>
+
+        <!-- 3D Interactive Elements (Hidden on Mobile) -->
+        <div id="hero-plane"
+            class="hidden md:flex absolute inset-0 pointer-events-none hero-3d-plane items-center justify-center">
+
+            <!-- Right Floating UI Mockup -->
+            <div class="hero-card absolute bottom-[15%] right-[7%] w-64 shadow-2xl backdrop-blur-md"
+                style="transform: translateZ(60px) rotateY(-15deg) rotateX(5deg);">
+                <img src="assets/UImockup.png" alt="UI Mockup" class="w-full h-auto rounded-lg opacity-90">
+            </div>
+
+            <!-- Left Floating UI Mockup -->
+            <div class="hero-card absolute bottom-[35%] left-[7%] w-64 shadow-2xl backdrop-blur-md"
+                style="transform: translateZ(60px) rotateY(-15deg) rotateX(5deg);">
+                <img src="assets/LaptopUI.png" alt="UI Mockup" class="w-full h-auto rounded-lg opacity-90">
+            </div>
+        </div>
+
+
+
+        <!-- Main Content -->
+        <div class="relative z-10 max-w-4xl mx-auto px-6 text-center" style="transform: translateZ(20px);">
+            <div
+                class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-300 text-xs font-medium tracking-wide mb-8 fade-up">
+                <span class="relative flex h-2 w-2">
+                    <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+                </span>
+                Accepting New Projects
+            </div>
+
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-semibold tracking-tighter text-white mb-6 leading-[1.1] fade-up"
+                style="transition-delay: 100ms;">
+                Stop losing clients to <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">bad
+                    design.</span>
+            </h1>
+
+            <p class="text-base md:text-lg text-slate-400 max-w-2xl mx-auto mb-10 font-light leading-relaxed fade-up"
+                style="transition-delay: 200ms;">
+                Your website is your silent salesman. I build high-end, authority-driven digital experiences that
+                convert visitors into high-paying clients.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 fade-up"
+                style="transition-delay: 300ms;">
+                <a href="#templates"
+                    class="group relative px-8 py-3.5 bg-white text-slate-950 rounded-full font-medium text-sm tracking-tight overflow-hidden transition-all hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+                    <span class="relative z-10">View My Work</span>
+                </a>
+                <a href="#why-me"
+                    class="px-8 py-3.5 text-white rounded-full font-medium text-sm tracking-tight border border-white/10 hover:bg-white/5 transition-colors">
+                    Why It Matters
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. WHY ME SECTION (Responsive Split) -->
+    <section id="why-me" class="py-24 relative bg-slate-950">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20 fade-up">
+                <h2 class="text-3xl md:text-5xl font-semibold tracking-tight text-white mb-4">The Real Cost of Bad
+                    Design
+                </h2>
+                <p class="text-slate-400 max-w-xl mx-auto font-light">Most websites aren't just ugly—they are actively
+                    losing money.</p>
+            </div>
+
+            <!-- DESKTOP GRID (Hidden on mobile) -->
+            <div class="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div
+                    class="group relative h-64 rounded-2xl border border-red-900/20 bg-red-950/10 overflow-hidden cursor-default transition-all duration-500 hover:border-emerald-500/30 hover:bg-emerald-950/10 fade-up">
+                    <div
+                        class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center transition-opacity duration-300 group-hover:opacity-0">
+                        <i data-lucide="snail" class="w-10 h-10 text-red-400 mb-4 stroke-1"></i>
+                        <h3 class="text-lg font-medium text-red-200 mb-2">Slow Loading</h3>
+                        <p class="text-sm text-red-200/60">53% of users abandon sites that take &gt;3s to load.</p>
+                    </div>
+                    <div
+                        class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-emerald-950/20 backdrop-blur-md">
+                        <i data-lucide="zap" class="w-10 h-10 text-emerald-400 mb-4 stroke-1"></i>
+                        <h3 class="text-lg font-medium text-emerald-200 mb-2">Blazing Fast</h3>
+                        <p class="text-sm text-emerald-200/60">Optimized code &amp; Next.js for instant page loads.</p>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="group relative h-64 rounded-2xl border border-red-900/20 bg-red-950/10 overflow-hidden cursor-default transition-all duration-500 hover:border-emerald-500/30 hover:bg-emerald-950/10 fade-up"
+                    style="transition-delay: 100ms;">
+                    <div
+                        class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center transition-opacity duration-300 group-hover:opacity-0">
+                        <i data-lucide="smartphone" class="w-10 h-10 text-red-400 mb-4 stroke-1"></i>
+                        <h3 class="text-lg font-medium text-red-200 mb-2">Poor Mobile UI</h3>
+                        <p class="text-sm text-red-200/60">70% of traffic is wasted due to broken mobile layouts.</p>
+                    </div>
+                    <div
+                        class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-emerald-950/20 backdrop-blur-md">
+                        <i data-lucide="smartphone" class="w-10 h-10 text-emerald-400 mb-4 stroke-1"></i>
+                        <h3 class="text-lg font-medium text-emerald-200 mb-2">Mobile First</h3>
+                        <p class="text-sm text-emerald-200/60">Responsive design that works flawlessly on any device.
+                        </p>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="group relative h-64 rounded-2xl border border-red-900/20 bg-red-950/10 overflow-hidden cursor-default transition-all duration-500 hover:border-emerald-500/30 hover:bg-emerald-950/10 fade-up"
+                    style="transition-delay: 200ms;">
+                    <div
+                        class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center transition-opacity duration-300 group-hover:opacity-0">
+                        <i data-lucide="mouse-pointer-2" class="w-10 h-10 text-red-400 mb-4 stroke-1"></i>
+                        <h3 class="text-lg font-medium text-red-200 mb-2">No Clear CTA</h3>
+                        <p class="text-sm text-red-200/60">Users leave because they don't know what to do next.</p>
+                    </div>
+                    <div
+                        class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-emerald-950/20 backdrop-blur-md">
+                        <i data-lucide="mouse-pointer-click" class="w-10 h-10 text-emerald-400 mb-4 stroke-1"></i>
+                        <h3 class="text-lg font-medium text-emerald-200 mb-2">Strategic Flow</h3>
+                        <p class="text-sm text-emerald-200/60">Conversion-optimized layouts to drive action.</p>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="group relative h-64 rounded-2xl border border-red-900/20 bg-red-950/10 overflow-hidden cursor-default transition-all duration-500 hover:border-emerald-500/30 hover:bg-emerald-950/10 fade-up"
+                    style="transition-delay: 300ms;">
+                    <div
+                        class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center transition-opacity duration-300 group-hover:opacity-0">
+                        <i data-lucide="layers" class="w-10 h-10 text-red-400 mb-4 stroke-1"></i>
+                        <h3 class="text-lg font-medium text-red-200 mb-2">Cluttered UI</h3>
+                        <p class="text-sm text-red-200/60">Confusion creates friction. Friction kills sales.</p>
+                    </div>
+                    <div
+                        class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-emerald-950/20 backdrop-blur-md">
+                        <i data-lucide="sparkles" class="w-10 h-10 text-emerald-400 mb-4 stroke-1"></i>
+                        <h3 class="text-lg font-medium text-emerald-200 mb-2">Premium Brand</h3>
+                        <p class="text-sm text-emerald-200/60">Clean, authoritative aesthetics that build trust.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MOBILE STICKY SCROLL (Visible on mobile) -->
+            <div class="md:hidden space-y-32 pb-24">
+                <!-- Mobile Card 1 -->
+                <div
+                    class="mobile-reveal-card sticky top-32 w-full h-72 rounded-2xl border border-white/10 bg-slate-900 overflow-hidden shadow-2xl">
+                    <!-- Flaw Side (Default) -->
+                    <div
+                        class="flaw-side absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-red-950/20">
+                        <i data-lucide="snail" class="w-12 h-12 text-red-400 mb-6 stroke-1"></i>
+                        <h3 class="text-xl font-medium text-red-200 mb-2">Slow Loading</h3>
+                        <p class="text-sm text-red-200/60">53% of users abandon sites that take &gt;3s to load.</p>
+                        <div class="mt-6 text-xs text-slate-500 animate-bounce">Scroll to fix</div>
+                    </div>
+                    <!-- Solution Side (Revealed) -->
+                    <div
+                        class="solution-side absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-emerald-950/90 backdrop-blur-xl">
+                        <i data-lucide="zap" class="w-12 h-12 text-emerald-400 mb-6 stroke-1"></i>
+                        <h3 class="text-xl font-medium text-emerald-200 mb-2">Blazing Fast</h3>
+                        <p class="text-sm text-emerald-200/60">Optimized code &amp; Next.js for instant page loads.</p>
+                    </div>
+                </div>
+
+                <!-- Mobile Card 2 -->
+                <div
+                    class="mobile-reveal-card sticky top-36 w-full h-72 rounded-2xl border border-white/10 bg-slate-900 overflow-hidden shadow-2xl">
+                    <div
+                        class="flaw-side absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-red-950/20">
+                        <i data-lucide="smartphone-off" class="w-12 h-12 text-red-400 mb-6 stroke-1"></i>
+                        <h3 class="text-xl font-medium text-red-200 mb-2">Poor Mobile UI</h3>
+                        <p class="text-sm text-red-200/60">70% of traffic is wasted due to broken mobile layouts.</p>
+                        <div class="mt-6 text-xs text-slate-500 animate-bounce">Scroll to fix</div>
+                    </div>
+                    <div
+                        class="solution-side absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-emerald-950/90 backdrop-blur-xl">
+                        <i data-lucide="smartphone" class="w-12 h-12 text-emerald-400 mb-6 stroke-1"></i>
+                        <h3 class="text-xl font-medium text-emerald-200 mb-2">Mobile First</h3>
+                        <p class="text-sm text-emerald-200/60">Responsive design that works flawlessly on any device.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Mobile Card 3 -->
+                <div
+                    class="mobile-reveal-card sticky top-40 w-full h-72 rounded-2xl border border-white/10 bg-slate-900 overflow-hidden shadow-2xl">
+                    <div
+                        class="flaw-side absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-red-950/20">
+                        <i data-lucide="mouse-pointer-2" class="w-12 h-12 text-red-400 mb-6 stroke-1"></i>
+                        <h3 class="text-xl font-medium text-red-200 mb-2">No Clear CTA</h3>
+                        <p class="text-sm text-red-200/60">Users leave because they don't know what to do next.</p>
+                        <div class="mt-6 text-xs text-slate-500 animate-bounce">Scroll to fix</div>
+                    </div>
+                    <div
+                        class="solution-side absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-emerald-950/90 backdrop-blur-xl">
+                        <i data-lucide="mouse-pointer-click" class="w-12 h-12 text-emerald-400 mb-6 stroke-1"></i>
+                        <h3 class="text-xl font-medium text-emerald-200 mb-2">Strategic Flow</h3>
+                        <p class="text-sm text-emerald-200/60">Conversion-optimized layouts to drive action.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. ROADMAP SECTION -->
+    <section class="py-24 bg-slate-950">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-3xl md:text-5xl font-semibold tracking-tight text-white mb-20 text-center">The Roadmap</h2>
+
+            <div class="relative flex flex-col md:flex-row gap-12">
+                <!-- Sticky Left Text -->
+                <div class="hidden md:flex flex-col w-1/3 sticky top-32 h-fit space-y-8">
+                    <h3 class="text-2xl font-light text-slate-400">Your journey to a<br>better website.</h3>
+                    <p class="text-sm text-slate-500">Scroll to see the workflow.</p>
+                </div>
+
+                <!-- Scrolling Timeline Right -->
+                <div class="w-full md:w-2/3 relative pl-8 md:pl-0">
+                    <div class="absolute left-0 top-0 bottom-0 w-px bg-slate-800 md:left-[-40px]"></div>
+
+                    <div class="space-y-32" id="process-container">
+                        <div class="relative process-card group" data-step="1">
+                            <div
+                                class="absolute top-8 left-[-41px] md:left-[-41px] -translate-x-1/2 w-5 h-5 rounded-full border-2 border-slate-700 bg-slate-900 z-10 process-dot flex items-center justify-center">
+                            </div>
+                            <div
+                                class="bg-slate-900/50 backdrop-blur-md border border-white/5 p-8 rounded-3xl transition-all duration-500 hover:border-indigo-500/30">
+                                <div class="flex items-center gap-4 mb-6">
+                                    <span class="text-sm font-mono text-slate-500 uppercase tracking-widest">Phase
+                                        01</span>
+                                    <h3 class="text-2xl text-white font-medium">Discovery &amp; Strategy</h3>
+                                </div>
+                                <p class="text-slate-400 leading-relaxed font-light">
+                                    We dive deep into your brand goals. This is about building a
+                                    system that serves your specific business needs.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="relative process-card group" data-step="2">
+                            <div
+                                class="absolute top-8 left-[-41px] md:left-[-41px] -translate-x-1/2 w-5 h-5 rounded-full border-2 border-slate-700 bg-slate-900 z-10 process-dot flex items-center justify-center">
+                            </div>
+                            <div
+                                class="bg-slate-900/50 backdrop-blur-md border border-white/5 p-8 rounded-3xl transition-all duration-500 hover:border-purple-500/30">
+                                <div class="flex items-center gap-4 mb-6">
+                                    <span class="text-sm font-mono text-slate-500 uppercase tracking-widest">Phase
+                                        02</span>
+                                    <h3 class="text-2xl text-white font-medium">Wireframing &amp; Copy</h3>
+                                </div>
+                                <p class="text-slate-400 leading-relaxed font-light">
+                                    Structure before style. We map out the user journey to ensure every click has a
+                                    purpose, pairing layout with high-converting copy.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="relative process-card group" data-step="3">
+                            <div
+                                class="absolute top-8 left-[-41px] md:left-[-41px] -translate-x-1/2 w-5 h-5 rounded-full border-2 border-slate-700 bg-slate-900 z-10 process-dot flex items-center justify-center">
+                            </div>
+                            <div
+                                class="bg-slate-900/50 backdrop-blur-md border border-white/5 p-8 rounded-3xl transition-all duration-500 hover:border-blue-500/30">
+                                <div class="flex items-center gap-4 mb-6">
+                                    <span class="text-sm font-mono text-slate-500 uppercase tracking-widest">Phase
+                                        03</span>
+                                    <h3 class="text-2xl text-white font-medium">Design &amp; Development</h3>
+                                </div>
+                                <p class="text-slate-400 leading-relaxed font-light">
+                                    High-fidelity visuals meet clean code. I build using modern frameworks for
+                                    animations, speed, and responsiveness.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="relative process-card group" data-step="4">
+                            <div
+                                class="absolute top-8 left-[-41px] md:left-[-41px] -translate-x-1/2 w-5 h-5 rounded-full border-2 border-slate-700 bg-slate-900 z-10 process-dot flex items-center justify-center">
+                            </div>
+                            <div
+                                class="bg-slate-900/50 backdrop-blur-md border border-white/5 p-8 rounded-3xl transition-all duration-500 hover:border-emerald-500/30">
+                                <div class="flex items-center gap-4 mb-6">
+                                    <span class="text-sm font-mono text-slate-500 uppercase tracking-widest">Phase
+                                        04</span>
+                                    <h3 class="text-2xl text-white font-medium">Launch &amp; Handoff</h3>
+                                </div>
+                                <p class="text-slate-400 leading-relaxed font-light">
+                                    Final testing, SEO checks, and launch. You get a fully functional, easy-to-manage
+                                    website ready to convert traffic.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. CAPABILITIES GRID -->
+    <section class="py-24 relative overflow-hidden">
+        <div
+            class="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[100px] pointer-events-none">
+        </div>
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-3xl md:text-5xl font-semibold tracking-tight text-white mb-16 text-center">Features</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-auto">
+                <!-- Large Card (Span 2 col) -->
+                <div
+                    class="md:col-span-2 md:row-span-2 relative group rounded-3xl border border-white/10 bg-white/[0.02] p-8 overflow-hidden tilt-card transition-all hover:border-indigo-500/50 min-h-[500px]">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-indigo-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                    </div>
+                    <div class="tilt-content relative z-10 h-full flex flex-col justify-between">
+                        <div>
+                            <div
+                                class="w-12 h-12 rounded-full bg-indigo-500/20 flex items-center justify-center mb-6 text-indigo-400">
+                                <i data-lucide="palette" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="text-2xl font-semibold text-white mb-2">Premium Design</h3>
+                            <p class="text-slate-400 font-light">Custom aesthetics that align perfectly with your brand
+                                identity, separating you from competitors using generic templates.</p>
+                            <ul class="text-sm text-slate-400 mt-4 space-y-2">
+                                <li class="flex items-center"><i data-lucide="check"
+                                        class="w-4 h-4 text-indigo-400 mr-2"></i>Custom Animations</li>
+                                <li class="flex items-center"><i data-lucide="check"
+                                        class="w-4 h-4 text-indigo-400 mr-2"></i>Brand Alignment</li>
+                                <li class="flex items-center"><i data-lucide="check"
+                                        class="w-4 h-4 text-indigo-400 mr-2"></i>Responsive Layouts</li>
+                            </ul>
+                        </div>
+                        <div
+                            class="w-full h-64 bg-indigo-500/10 rounded-xl border border-indigo-500/20 relative overflow-hidden group-hover:scale-[1.02] transition-transform duration-500 mt-8">
+                            <!-- Abstract UI Mockup -->
+                            <div
+                                class="absolute top-4 left-4 right-4 h-full bg-slate-900 rounded-t-lg border border-white/10 p-3">
+                                <div class="flex gap-2 mb-3">
+                                    <div class="w-2 h-2 rounded-full bg-red-500"></div>
+                                    <div class="w-2 h-2 rounded-full bg-yellow-500"></div>
+                                    <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                                </div>
+                                <div class="grid grid-cols-4 gap-3">
+                                    <!-- Header/Nav -->
+                                    <div class="col-span-4 h-8 bg-slate-800 rounded mb-1"></div>
+
+                                    <!-- Sidebar -->
+                                    <div
+                                        class="col-span-1 row-span-3 h-32 bg-indigo-500/10 border border-indigo-500/20 rounded">
+                                    </div>
+
+                                    <!-- Main Content Area 1 -->
+                                    <div class="col-span-3 h-16 bg-purple-500/10 border border-purple-500/20 rounded">
+                                    </div>
+
+                                    <!-- Sub Content Area 2 -->
+                                    <div class="col-span-2 h-12 bg-emerald-500/10 border border-emerald-500/20 rounded">
+                                    </div>
+
+                                    <!-- Sub Content Area 3 -->
+                                    <div class="col-span-1 h-12 bg-orange-500/10 border border-orange-500/20 rounded">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tall Card (SEO) -->
+                <div
+                    class="relative group rounded-3xl border border-white/10 bg-white/[0.02] p-8 overflow-hidden tilt-card transition-all hover:border-emerald-500/50 min-h-[250px]">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                    </div>
+                    <div class="tilt-content relative z-10 h-full flex flex-col">
+                        <div
+                            class="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center mb-6 text-emerald-400">
+                            <i data-lucide="search" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white mb-2">SEO Optimized</h3>
+                        <p class="text-sm text-slate-400 font-light mb-4">Structure and semantics built to rank.</p>
+                        <ul class="text-sm text-slate-400 mb-4 space-y-2">
+                            <li class="flex items-center"><i data-lucide="check"
+                                    class="w-4 h-4 text-emerald-400 mr-2"></i>Meta Tags</li>
+                            <li class="flex items-center"><i data-lucide="check"
+                                    class="w-4 h-4 text-emerald-400 mr-2"></i>Semantic HTML</li>
+                            <li class="flex items-center"><i data-lucide="check"
+                                    class="w-4 h-4 text-emerald-400 mr-2"></i>Performance</li>
+                        </ul>
+                        <div
+                            class="flex items-center justify-between text-xs text-emerald-400 bg-emerald-500/10 px-3 py-2 rounded-lg mt-auto">
+                            <span>Score</span>
+                            <span>100/100</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Conversion Card -->
+                <div
+                    class="relative group rounded-3xl border border-white/10 bg-white/[0.02] p-8 overflow-hidden tilt-card transition-all hover:border-orange-500/50 min-h-[250px]">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                    </div>
+                    <div class="tilt-content relative z-10 h-full flex flex-col">
+                        <div
+                            class="w-12 h-12 rounded-full bg-orange-500/20 flex items-center justify-center mb-6 text-orange-400">
+                            <i data-lucide="trending-up" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white mb-2">Optimization</h3>
+                        <p class="text-sm text-slate-400 font-light mb-4">A/B testing ready architecture to maximize
+                            ROI.</p>
+                        <ul class="text-sm text-slate-400 space-y-2">
+                            <li class="flex items-center"><i data-lucide="check"
+                                    class="w-4 h-4 text-orange-400 mr-2"></i>A/B Testing</li>
+                            <li class="flex items-center"><i data-lucide="check"
+                                    class="w-4 h-4 text-orange-400 mr-2"></i>User Flow Analysis</li>
+                            <li class="flex items-center"><i data-lucide="check"
+                                    class="w-4 h-4 text-orange-400 mr-2"></i>Conversion Tracking</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Standard Card -->
+                <div
+                    class="relative group rounded-3xl border border-white/10 bg-white/[0.02] p-8 overflow-hidden tilt-card transition-all hover:border-blue-500/50 min-h-[250px]">
+                    <div class="tilt-content relative z-10">
+                        <div
+                            class="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center mb-4 text-blue-400">
+                            <i data-lucide="users" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white mb-2">Lead Gen</h3>
+                        <p class="text-sm text-slate-400 font-light mb-4">Frictionless forms.</p>
+                        <ul class="text-sm text-slate-400 space-y-2">
+                            <li class="flex items-center"><i data-lucide="check"
+                                    class="w-4 h-4 text-blue-400 mr-2"></i>Contact Forms</li>
+                            <li class="flex items-center"><i data-lucide="check"
+                                    class="w-4 h-4 text-blue-400 mr-2"></i>Newsletter Signup</li>
+                            <li class="flex items-center"><i data-lucide="check"
+                                    class="w-4 h-4 text-blue-400 mr-2"></i>CRM Integration</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Standard Card -->
+                <div
+                    class="relative group rounded-3xl border border-white/10 bg-white/[0.02] p-8 overflow-hidden tilt-card transition-all hover:border-purple-500/50 min-h-[250px]">
+                    <div class="tilt-content relative z-10">
+                        <div
+                            class="w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center mb-4 text-purple-400">
+                            <i data-lucide="calendar" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white mb-2">Scheduling</h3>
+                        <p class="text-sm text-slate-400 font-light mb-4">Booking integration.</p>
+                        <ul class="text-sm text-slate-400 space-y-2">
+                            <li class="flex items-center"><i data-lucide="check"
+                                    class="w-4 h-4 text-purple-400 mr-2"></i>Calendar Sync</li>
+                            <li class="flex items-center"><i data-lucide="check"
+                                    class="w-4 h-4 text-purple-400 mr-2"></i>Automated Reminders</li>
+                            <li class="flex items-center"><i data-lucide="check"
+                                    class="w-4 h-4 text-purple-400 mr-2"></i>Payment Integration</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Form Integration Card -->
+                <div
+                    class="relative group rounded-3xl border border-white/10 bg-white/[0.02] p-8 overflow-hidden tilt-card transition-all hover:border-pink-500/50 min-h-[250px]">
+                    <div class="tilt-content relative z-10">
+                        <div
+                            class="w-10 h-10 rounded-full bg-pink-500/20 flex items-center justify-center mb-4 text-pink-400">
+                            <i data-lucide="file-text" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white mb-2">Form Integration</h3>
+                        <p class="text-sm text-slate-400 font-light mb-4">Seamless data collection.</p>
+                        <ul class="text-sm text-slate-400 space-y-2">
+                            <li class="flex items-center"><i data-lucide="check"
+                                    class="w-4 h-4 text-pink-400 mr-2"></i>Custom Fields</li>
+                            <li class="flex items-center"><i data-lucide="check"
+                                    class="w-4 h-4 text-pink-400 mr-2"></i>Validation</li>
+                            <li class="flex items-center"><i data-lucide="check"
+                                    class="w-4 h-4 text-pink-400 mr-2"></i>Webhooks</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. ABOUT ME & TECH STACK -->
+    <section class="py-24 bg-slate-950 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row gap-12 lg:gap-24 mb-24">
+                <!-- Tech Stack Scattering Circle (Updated) -->
+                <div class="relative w-full h-[400px] flex items-center justify-center overflow-visible">
+                    <!-- Centered Text -->
+                    <div
+                        class="text-center absolute z-20 pointer-events-none flex flex-col items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4 rounded-full">
+                        <p class="text-xs font-medium text-slate-500 tracking-widest uppercase mb-1">My Toolkit</p>
+                        <h3 class="text-xl text-white font-semibold">Technologies</h3>
+                    </div>
+
+                    <!-- The Circle Container -->
+                    <div id="tech-container"
+                        class="relative w-[300px] h-[300px] md:w-[380px] md:h-[380px] rounded-full border border-white/5 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-indigo-500/5 rounded-full blur-3xl opacity-50"></div>
+
+                        <!-- Spinning Ring -->
+                        <div id="tech-ring" class="tech-ring absolute w-full h-full">
+                            <!-- Icons placed via JS, with specific tech list -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Content -->
+                <div class="w-full md:w-1/2 flex flex-col justify-center space-y-8">
+                    <h2 class="text-3xl md:text-5xl font-semibold tracking-tight text-white">Behind the Code</h2>
+                    <div class="space-y-6 text-slate-400 font-light leading-relaxed text-lg">
+                        <h3>VAIBHAV K</h3>
+                        <p class="fade-up delay-1s">
+                            I combine thoughtful design with reliable development to create websites that look great and
+                            work even better.
+                            No stress, no complexity — just an online presence you can be proud of.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. MY TEMPLATES -->
+    <section id="templates" class="py-24 bg-slate-950 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 mb-12 flex items-end justify-between">
+            <div>
+                <h2 class="text-3xl md:text-5xl font-semibold tracking-tight text-white mb-4">Selected Work</h2>
+                <p class="text-slate-400 font-light">Recent premium builds for industry leaders.</p>
+            </div>
+            <div class="hidden md:flex gap-2">
+                <button id="scrollLeft"
+                    class="p-3 rounded-full border border-white/10 hover:bg-white/5 text-white transition-colors"><i
+                        data-lucide="arrow-left" class="w-5 h-5"></i></button>
+                <button id="scrollRight"
+                    class="p-3 rounded-full border border-white/10 hover:bg-white/5 text-white transition-colors"><i
+                        data-lucide="arrow-right" class="w-5 h-5"></i></button>
+            </div>
+        </div>
+
+        <div id="templateContainer"
+            class="flex gap-8 overflow-x-auto px-6 pb-12 snap-x snap-mandatory scroll-smooth hide-scrollbar"
+            style="scrollbar-width: none; -ms-overflow-style: none;">
+
+            <!-- Project 1 -->
+            <div class="min-w-[85vw] md:min-w-[600px] snap-center group">
+                <div
+                    class="relative h-[400px] bg-slate-900 rounded-2xl overflow-hidden border border-white/10 mb-6 transition-transform duration-500 group-hover:scale-[1.01]">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent z-10">
+                    </div>
+                    <img src="assets/JimCarter.png" alt="Jim Carter Fitness"
+                        class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500">
+                    <div
+                        class="absolute bottom-0 left-0 p-8 z-20 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                        <div
+                            class="inline-block px-3 py-1 mb-3 rounded-full bg-orange-500/20 text-orange-400 text-xs font-medium border border-orange-500/20">
+                            Fitness Trainer</div>
+                        <h3 class="text-2xl font-bold text-white">Jim Carter</h3>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center">
+                    <p class="text-slate-400 text-sm font-light">High-energy landing page for a personal trainer.</p>
+                    <button
+                        class="text-white text-sm font-medium border-b border-white/30 hover:border-white transition-colors pb-1">View
+                        Live</button>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="min-w-[85vw] md:min-w-[600px] snap-center group">
+                <div
+                    class="relative h-[400px] bg-slate-900 rounded-2xl overflow-hidden border border-white/10 mb-6 transition-transform duration-500 group-hover:scale-[1.01]">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent z-10">
+                    </div>
+                    <img src="assets/Elana.png" alt="Elana Vance Coaching"
+                        class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500">
+                    <div
+                        class="absolute bottom-0 left-0 p-8 z-20 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                        <div
+                            class="inline-block px-3 py-1 mb-3 rounded-full bg-purple-500/20 text-purple-400 text-xs font-medium border border-purple-500/20">
+                            Business Coach</div>
+                        <h3 class="text-2xl font-bold text-white">Elana Vance</h3>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center">
+                    <p class="text-slate-400 text-sm font-light">Authority building site for a business consultant.</p>
+                    <button
+                        class="text-white text-sm font-medium border-b border-white/30 hover:border-white transition-colors pb-1">View
+                        Live</button>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="min-w-[85vw] md:min-w-[600px] snap-center group">
+                <div
+                    class="relative h-[400px] bg-slate-900 rounded-2xl overflow-hidden border border-white/10 mb-6 transition-transform duration-500 group-hover:scale-[1.01]">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent z-10">
+                    </div>
+                    <img src="assets/Jessica.png" alt="Jonassen Nutrition"
+                        class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500">
+                    <div
+                        class="absolute bottom-0 left-0 p-8 z-20 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                        <div
+                            class="inline-block px-3 py-1 mb-3 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-medium border border-emerald-500/20">
+                            Nutritionist</div>
+                        <h3 class="text-2xl font-bold text-white">Jessica Jonassen</h3>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center">
+                    <p class="text-slate-400 text-sm font-light">Clean, organic aesthetics for a health professional.
+                    </p>
+                    <button
+                        class="text-white text-sm font-medium border-b border-white/30 hover:border-white transition-colors pb-1">View
+                        Live</button>
+                </div>
+            </div>
+            <div class="min-w-[5vw]"></div>
+        </div>
+    </section>
+
+    <!-- 7. PRICING -->
+    <section class="py-24 relative bg-slate-950">
+        <div class="absolute inset-0 bg-grid opacity-50 pointer-events-none"></div>
+        <div class="max-w-lg mx-auto px-6 relative z-10">
+            <div
+                class="relative bg-slate-900/40 backdrop-blur-xl border border-indigo-500/30 rounded-3xl p-8 md:p-12 text-center shadow-[0_0_50px_rgba(99,102,241,0.1)] hover:shadow-[0_0_80px_rgba(99,102,241,0.2)] transition-shadow duration-500 fade-up">
+
+                <div
+                    class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-indigo-500 text-white px-4 py-1 rounded-full text-xs font-semibold tracking-wide shadow-lg uppercase">
+                    Pricing</div>
+
+                <h2 class="text-xl text-indigo-300 font-medium mb-4">Starting At</h2>
+                <div class="flex items-baseline justify-center gap-1 mb-8">
+                    <span class="text-5xl font-bold text-white">$250</span>
+                </div>
+
+                <ul class="space-y-4 text-left mb-10">
+                    <li class="flex items-start gap-3 text-slate-300 text-sm font-light">
+                        <i data-lucide="check" class="w-5 h-5 text-indigo-400 shrink-0"></i>
+                        Full website design &amp; development
+                    </li>
+                    <li class="flex items-start gap-3 text-slate-300 text-sm font-light">
+                        <i data-lucide="check" class="w-5 h-5 text-indigo-400 shrink-0"></i>
+                        Mobile-first, responsive layout
+                    </li>
+                    <li class="flex items-start gap-3 text-slate-300 text-sm font-light">
+                        <i data-lucide="check" class="w-5 h-5 text-indigo-400 shrink-0"></i>
+                        Strategic CTAs &amp; Copyrighting
+                    </li>
+                    <li class="flex items-start gap-3 text-slate-300 text-sm font-light">
+                        <i data-lucide="check" class="w-5 h-5 text-indigo-400 shrink-0"></i>
+                        Booking/Scheduling setup
+                    </li>
+                    <li class="flex items-start gap-3 text-slate-300 text-sm font-light">
+                        <i data-lucide="check" class="w-5 h-5 text-indigo-400 shrink-0"></i>
+                        Fast delivery (2-3 days)
+                    </li>
+                </ul>
+
+                <a href="#contact"
+                    class="block w-full py-4 rounded-xl bg-white text-slate-950 font-semibold text-sm hover:bg-indigo-50 transition-colors shadow-lg shadow-indigo-900/20">
+                    Book
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. CONTACT FORM -->
+    <section id="contact" class="py-24 bg-slate-950 border-t border-white/5">
+        <div class="max-w-2xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-5xl font-semibold tracking-tight text-white mb-4">Let's build something
+                    great.</h2>
+                <p class="text-slate-400 font-light">Fill out the form below to schedule your consultation.</p>
+            </div>
+
+            <form class="space-y-6 fade-up" action="https://formspree.io/f/mblnyybo" method="POST">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="relative">
+                        <input type="text" id="name"
+                            class="peer w-full bg-slate-900/50 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-transparent focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
+                            name="name">
+                        <label for="name"
+                            class="absolute left-4 top-3 text-slate-500 text-sm transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-500 peer-focus:-top-2.5 peer-focus:text-xs peer-focus:text-indigo-400 peer-focus:bg-slate-950 peer-focus:px-1">Name</label>
+                    </div>
+                    <div class="relative">
+                        <input type="email" id="email"
+                            class="peer w-full bg-slate-900/50 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-transparent focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
+                            name="email">
+                        <label for="email"
+                            class="absolute left-4 top-3 text-slate-500 text-sm transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-500 peer-focus:-top-2.5 peer-focus:text-xs peer-focus:text-indigo-400 peer-focus:bg-slate-950 peer-focus:px-1">Email</label>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <input type="text" id="niche"
+                        class="peer w-full bg-slate-900/50 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-transparent focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
+                        name="niche">
+                    <label for="niche"
+                        class="absolute left-4 top-3 text-slate-500 text-sm transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-500 peer-focus:-top-2.5 peer-focus:text-xs peer-focus:text-indigo-400 peer-focus:bg-slate-950 peer-focus:px-1">Business
+                        Niche</label>
+                </div>
+
+                <div class="relative">
+                    <textarea id="message" rows="4"
+                        class="peer w-full bg-slate-900/50 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-transparent focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
+                        name="message"></textarea>
+                    <label for="message"
+                        class="absolute left-4 top-3 text-slate-500 text-sm transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-500 peer-focus:-top-2.5 peer-focus:text-xs peer-focus:text-indigo-400 peer-focus:bg-slate-950 peer-focus:px-1">Message</label>
+                </div>
+
+                <button type="submit"
+                    class="group w-full py-4 rounded-lg bg-indigo-600 text-white font-medium hover:bg-indigo-500 transition-all flex items-center justify-center gap-2">
+                    Send Request
+                    <i data-lucide="send" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-12 border-t border-white/5 bg-slate-950 text-center md:text-left">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div>
+                <p class="text-sm text-slate-500">© 2023 Premium Portfolio. All rights reserved.</p>
+                <p class="text-xs text-slate-600 mt-1">Conversion-driven web design for coaches &amp; creators.</p>
+            </div>
+            <div class="flex gap-6">
+                <a href="#" class="text-slate-500 hover:text-white transition-colors"><i data-lucide="twitter"
+                        class="w-5 h-5"></i></a>
+                <a href="#" class="text-slate-500 hover:text-white transition-colors"><i data-lucide="linkedin"
+                        class="w-5 h-5"></i></a>
+                <a href="#" class="text-slate-500 hover:text-white transition-colors"><i data-lucide="github"
+                        class="w-5 h-5"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Widget Wrapper (Handles Entrance Animation) -->
+    <div class="fixed bottom-6 right-6 z-50 widget-popup">
+        <!-- Interactive Widget (Handles Hover) -->
+        <a href="https://wa.me/8867760305" target="_blank"
+            class="block group transition-all duration-300 hover:scale-110 hover:-translate-y-1">
+
+            <!-- Tooltip -->
+            <div
+                class="absolute bottom-full right-1/2 translate-x-1/2 mb-3 px-4 py-2 bg-white text-slate-900 text-sm font-bold rounded-xl shadow-xl opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none whitespace-nowrap">
+                Chat with me!
+                <!-- Arrow -->
+                <div
+                    class="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-8 border-transparent border-t-white">
+                </div>
+            </div>
+
+            <!-- Icon with 3D Shadow -->
+            <div class="relative">
+                <div
+                    class="absolute inset-0 bg-black/20 rounded-full blur-xl translate-y-2 group-hover:translate-y-4 transition-transform duration-300">
+                </div>
+                <img src="assets/Whatsapp.png" alt="Chat on WhatsApp"
+                    class="relative w-16 h-16 drop-shadow-[0_4px_6px_rgba(0,0,0,0.4)]">
+            </div>
+        </a>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        /* --- 1. HERO 3D INTERACTION --- */
+        const heroSection = document.getElementById('hero-section');
+        const heroPlane = document.getElementById('hero-plane');
+
+        if (heroSection && heroPlane) {
+            heroSection.addEventListener('mousemove', (e) => {
+                const { clientX, clientY } = e;
+                const { innerWidth, innerHeight } = window;
+                const rotateY = ((clientX / innerWidth) - 0.5) * 10;
+                const rotateX = ((clientY / innerHeight) - 0.5) * -10;
+                heroPlane.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+        }
+
+        /* --- 2. TILT CARDS --- */
+        document.querySelectorAll('.tilt-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * -5;
+                const rotateY = ((x - centerX) / centerX) * 5;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+            });
+        });
+
+        /* --- 3. MOBILE BAD DESIGN SCROLL REVEAL --- */
+        const mobileCards = document.querySelectorAll('.mobile-reveal-card');
+        const checkScroll = () => {
+            if (window.innerWidth > 768) return; // Only mobile
+
+            const triggerBottom = window.innerHeight * 0.7; // Trigger at 70% down viewport
+            const triggerTop = window.innerHeight * 0.3; // Reset if scrolls back up too high
+
+            mobileCards.forEach(card => {
+                const cardTop = card.getBoundingClientRect().top;
+
+                // If card is well within view near the top, show solution
+                if (cardTop < triggerBottom && cardTop > 50) {
+                    // Calculate progress based on position to create a smooth transition feel or just toggle
+                    if (cardTop < window.innerHeight * 0.5) {
+                        card.classList.add('active');
+                    } else {
+                        card.classList.remove('active');
+                    }
+                }
+            });
+        };
+        window.addEventListener('scroll', checkScroll);
+        checkScroll(); // Initial check
+
+        /* --- 4. TECH RING ICONS --- */
+        const techRing = document.getElementById('tech-ring');
+        // HTML, CSS, JS, Tailwind, React, Next, Node, Figma
+        const technologies = [
+            { img: 'assets/HTML.png', name: 'HTML5', desc: 'Semantic Structure' },
+            { img: 'assets/CSS.png', name: 'CSS3', desc: 'Modern Styling' },
+            { img: 'assets/JavaScript.png', name: 'Javascript', desc: 'Dynamic Logic' },
+            { img: 'assets/Tailwind.png', name: 'Tailwind', desc: 'Utility First' },
+            { img: 'assets/React.png', name: 'React', desc: 'Component Library' },
+            { img: 'assets/NextJS.svg', name: 'Next.js', desc: 'Full Stack Framework' },
+            { img: 'assets/NodeJS.png', name: 'Node.js', desc: 'Backend Runtime' },
+            { img: 'assets/Figma.png', name: 'Figma', desc: 'UI/UX Design' }
+        ];
+
+        if (techRing) {
+            const radius = window.innerWidth < 768 ? 130 : 170; // Radius size
+            technologies.forEach((tech, index) => {
+                const angle = (index / technologies.length) * 2 * Math.PI;
+                const x = Math.cos(angle) * radius;
+                const y = Math.sin(angle) * radius;
+
+                const item = document.createElement('div');
+                item.className = 'tech-item absolute top-1/2 left-1/2 -ml-6 -mt-6 w-12 h-12 rounded-full cursor-pointer group/icon';
+                item.style.transform = `translate(${x}px, ${y}px)`;
+
+                // Tooltip and Icon Structure
+                item.innerHTML = `
+                    <div class="tech-item-inner bg-slate-900 border border-white/10 rounded-full shadow-lg hover:border-indigo-500 hover:text-indigo-400 text-slate-300 transition-colors relative flex items-center justify-center">
+                        <img src="${tech.img}" alt="${tech.name}" class="w-6 h-6 object-contain">
+                        
+                        <!-- Tooltip Pop-up -->
+                        <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-32 bg-slate-800 border border-white/10 rounded-lg p-2 text-center opacity-0 group-hover/icon:opacity-100 transition-opacity duration-300 pointer-events-none z-50 shadow-xl">
+                            <div class="text-xs font-semibold text-white">${tech.name}</div>
+                            <div class="text-[10px] text-slate-400 mt-0.5">${tech.desc}</div>
+                            <div class="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-slate-800"></div>
+                        </div>
+                    </div>
+                `;
+                techRing.appendChild(item);
+            });
+            lucide.createIcons(); // Refresh icons for dynamic content
+        }
+
+        /* --- 5. PROCESS SCROLL HIGHLIGHT --- */
+        const processObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    document.querySelectorAll('.process-card').forEach(c => c.classList.remove('active'));
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.6, rootMargin: "-10% 0px -10% 0px" });
+
+        document.querySelectorAll('.process-card').forEach(card => processObserver.observe(card));
+
+        /* --- 6. FADE UP ANIMATION --- */
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        /* --- 7. HORIZONTAL SCROLL --- */
+        const tplContainer = document.getElementById('templateContainer');
+        document.getElementById('scrollRight').addEventListener('click', () => {
+            tplContainer.scrollBy({ left: 400, behavior: 'smooth' });
+        });
+        document.getElementById('scrollLeft').addEventListener('click', () => {
+            tplContainer.scrollBy({ left: -400, behavior: 'smooth' });
+        });
+    </script>
+
+</body>
+
+</html>
